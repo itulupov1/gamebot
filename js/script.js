@@ -8,7 +8,6 @@ const isNumber = function (n) {
 
 function setNumber() {
 	const number = Math.round((Math.random() * 100)) + 1;
-
 	function tryGuessing() {
 		const input = prompt('Угадай число от 1 до 100');
 		//setNumber();
