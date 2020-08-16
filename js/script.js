@@ -2,47 +2,44 @@
 
 // "Загадывание случайного числа от 1 до 100 - усложненное"
 
-let isNumber = function (n) {
+const isNumber = function (n) {
 	return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
 function setNumber() {
-	let number = parseInt(Math.random() * 100);
-	if (number === 0) {
-		number = 1;
-	}
+	const number = Math.round((Math.random() * 100)) + 1;
 	let attempts = 10;
 	function tryGuessing() {
-		let input = prompt('Угадай число от 1 до 100');
 		if (attempts > 0) {
+			const input = prompt('Угадай число от 1 до 100');
 			if (input === null) {
-				alert('Пока...');
-				return;
+				return alert('Пока...');
 			} else if (input > number) {
 				attempts--;
 				alert('Загаданное число меньше, осталось попыток ' + attempts);
-				tryGuessing();
+				return tryGuessing();
 			} else if (input < number) {
 				attempts--;
 				alert('Загаданное число больше, осталось попыток ' + attempts);
-				tryGuessing();
+				return tryGuessing();
 			} else if (!isNumber(input)) {
 				alert('Введи число!');
-				tryGuessing();
+				return tryGuessing();
 			} else if (+input === number) {
-				let congr = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?');
+				const congr = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?');
 				if (congr === true) {
-					setNumber();
+					return setNumber();
 				}
 			}
 		} else {
-			let lose = confirm('Попытки закончились, хотите сыграть еще?');
+			const lose = confirm('Попытки закончились, хотите сыграть еще?');
 			if (lose === true) {
-			setNumber();
+			return setNumber();
 			}
 		}
 	}
 	tryGuessing(); 
 }
 setNumber();
+
 
